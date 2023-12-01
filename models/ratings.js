@@ -2,25 +2,25 @@ const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
 
-trail.init(
+rating.init(
   {
-    trail_name: {
-      type: DataTypes.string,
+    user_rating: {
+      type: DataTypes.boolean,
       allowNull: false,
       primaryKey: true,
     },
-    elevation: {
+    comment: {
       type: DataTypes.STRING,
       allowNull: true,
       unique: false,
       primaryKey: true,
     },
-    user_rating: {
-      type: DataTypes.string,
-      allowNull: true,
-      primaryKey: false,
-    },  
-    Trail_location: {
+    trail_name: {
+        type: DataTypes.string,
+        allowNull: false,
+        primaryKey: false,
+      }, 
+    rating_location: {
     type: DataTypes.STRING,
     allowNull: false,
     primaryKey: true,
@@ -33,8 +33,8 @@ trail.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'trail',
+    modelName: 'rating',
   }
 );
 
-module.exports = trail;
+module.exports = rating;
