@@ -1,22 +1,23 @@
+const { DataTypes } = require('sequelize');
+const sequelize = require('../config/config'); // Replace with the actual path
 
-// models/trail.js
+const Trail = sequelize.define('Trail', {
+  name: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  difficulty: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  length: {
+    type: DataTypes.FLOAT,
+    allowNull: false,
+  },
+  description: {
+    type: DataTypes.TEXT,
+    allowNull: true,
+  },
+});
 
-module.exports = (sequelize, DataTypes) => {
-    const Trail = sequelize.define('Trail', {
-      name: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      location: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      // Other trail attributes
-    });
-  
-    // Trail associations or methods can be defined here
-  
-    return Trail;
-  };
-
-
+module.exports = Trail;

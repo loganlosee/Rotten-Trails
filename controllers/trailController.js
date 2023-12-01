@@ -1,6 +1,6 @@
 // controllers/trailController.js
 
-const { Trail } = require('../models');
+const { Trail } = require('../models/trail');
 
 const trailController = {
   getSearch: (req, res) => {
