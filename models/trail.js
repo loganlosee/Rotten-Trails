@@ -1,22 +1,38 @@
+const { DataTypes } = require('sequelize');
 
-// models/trail.js
+const sequelize = require('../config/config');
 
-module.exports = (sequelize, DataTypes) => {
-    const Trail = sequelize.define('Trail', {
-      name: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      location: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      // Other trail attributes
-    });
-  
-    // Trail associations or methods can be defined here
-  
-    return Trail;
-  };
+const Trail = sequelize.define('Trail', {
+  trailName: {
 
+const Trail = sequelize.define('Trail', {
+  name: {
 
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  difficulty: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+
+  rating: {
+    type: DataTypes.boolean,
+    primaryKey: false
+  },
+  elevationGain: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+  },
+
+  length: {
+    type: DataTypes.FLOAT,
+    allowNull: false,
+  },
+  description: {
+    type: DataTypes.TEXT,
+    allowNull: true,
+  },
+});
+
+module.exports = Trail;

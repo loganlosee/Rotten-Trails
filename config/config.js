@@ -1,22 +1,23 @@
-// config/config.js
+const Sequelize = require('sequelize');
+require('dotenv').config();
 
-module.exports = {
-    development: {
-      username: 'your_username',
-      password: 'your_password',
-      database: 'your_database',
-      host: 'localhost',
+let sequelize;
+
+if (process.env.JAWSDB_URL) {
+  // If using JawsDB in production
+  sequelize = new Sequelize(process.env.JAWSDB_URL);
+} else {
+  // If using a local MySQL database
+  sequelize = new Sequelize(
+    process.env.DB_NAME,
+    process.env.DB_USER,
+    process.env.DB_PASSWORD,
+    {
+      host: process.env.DB_HOST || 'localhost',
       dialect: 'mysql',
-    },
-    production: {
-      // Production database configuration for deployment on platforms like Heroku
-      use_env_variable: 'DATABASE_URL',
-      dialect: 'postgres',
-      dialectOptions: {
-        ssl: {
-          require: true,
-          rejectUnauthorized: false,
-        },
-      },
-    },
-  };
+      port: process.env.DB_PORT || 3306,
+    }
+  );
+}
+
+module.exports = sequelize;
