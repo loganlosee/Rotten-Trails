@@ -1,3 +1,4 @@
+
 // models/trail.js
 
 module.exports = (sequelize, DataTypes) => {
@@ -17,3 +18,5 @@ module.exports = (sequelize, DataTypes) => {
   
     return Trail;
   };
+
+
