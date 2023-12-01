@@ -1,5 +1,5 @@
 const { DataTypes } = require('sequelize');
-const sequelize = require('../config/config'); // Replace with the actual path
+const sequelize = require('../config/connection');
 
 const Trail = sequelize.define('Trail', {
   name: {

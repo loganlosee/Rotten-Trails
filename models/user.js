@@ -1,6 +1,5 @@
-// models/user.js
-const { Model, DataTypes } = require('sequelize');
-const sequelize = require('../config/config'); // Adjust the path
+const { DataTypes } = require('sequelize');
+const sequelize = require('../config/connection');
 
 const User = sequelize.define('User', {
   username: {
@@ -13,7 +12,5 @@ const User = sequelize.define('User', {
     allowNull: false,
   },
 });
-
-// User associations or methods can be defined here
 
 module.exports = User;

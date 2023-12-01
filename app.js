@@ -4,8 +4,9 @@ const session = require('express-session');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const dotenv = require('dotenv');
 const exphbs = require('express-handlebars');
-const sequelize = require('./config/config'); // Adjust the path based on your file structure
-const routes = require('./controllers');
+const sequelize = require('./config/config');
+const routes = require('./controllers');  // Make sure this is correct
+
 const handlebars = require('handlebars');
 const bcrypt = require('bcrypt');
 
@@ -31,7 +32,7 @@ const sessionStore = new SequelizeStore({
 });
 app.use(
   session({
-    secret: process.env.SESSION_SECRET || 'your-fallback-secret', // Use a secure secret
+    secret: process.env.SESSION_SECRET || 'your-fallback-secret',
     resave: false,
     saveUninitialized: true,
     store: sessionStore,
@@ -45,9 +46,9 @@ hbs.handlebars.registerHelper('extend', function (name, context) {
 });
 
 // Routes
-app.use('/api/auth', authController);
-app.use('/api/trail', trailController);
-app.use('/api/comment', commentController);
+app.use('/api/auth', routes.authController);
+app.use('/api/trail', routes.trailController);
+app.use('/api/comment', routes.commentController);
 
 // Define routes
 app.get('/', (req, res) => {
