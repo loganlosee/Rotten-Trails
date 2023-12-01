@@ -1,17 +1,17 @@
-// controllers/trailController.js
+const express = require('express');
+const router = express.Router();
 
-const { Trail } = require('../models');
+// Example routes
+router.get('/search', (req, res) => {
+  res.render('search'); // Replace with your actual rendering logic
+});
 
-const trailController = {
-  getSearch: (req, res) => {
-    // Trail search logic
-  },
-  postSearch: async (req, res) => {
-    // Trail search logic (post method)
-  },
-  getDetails: (req, res) => {
-    // Trail details logic
-  },
-};
+router.post('/search', (req, res) => {
+  // Search logic (post method)
+});
 
-module.exports = trailController;
+router.get('/details/:id', (req, res) => {
+  // Trail details logic
+});
+
+module.exports = router;

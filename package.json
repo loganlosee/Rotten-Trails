@@ -1,22 +1,27 @@
 {
-  "name": "rotten-trails",
-  "version": "1.0.0",
-  "description": "RottenTrails is a place to view trail conditions, see what otther hikers have to say, rate and saveyour favorite hikes. With Rotten Trails you can write reviews, interact with other users, and stay up to date on your favorite places to explore. (Utah trails only)",
-  "main": "app.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "body-parser": "^1.20.2",
-    "cookie-parser": "^1.4.6",
-    "express": "^4.18.2",
-    "express-handlebars": "^7.1.2",
-    "express-session": "^1.17.3",
-    "mysql2": "^3.6.5",
-    "path": "^0.12.7",
-    "sequelize": "^6.35.1"
-  }
+    "name": "rotten-trails",
+    "version": "1.0.0",
+    "description": "RottenTrails is a place to view trail conditions, see what other hikers have to say, rate and save your favorite hikes. With Rotten Trails, you can write reviews, interact with other users, and stay up to date on your favorite places to explore. (Utah trails only)",
+    "main": "app.js",
+    "scripts": {
+        "start": "node app.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "bcrypt": "^5.1.1",
+        "body-parser": "^1.20.2",
+        "connect-session-sequelize": "^7.1.7",
+        "cookie-parser": "^1.4.6",
+        "dotenv": "^16.3.1",
+        "express": "^4.18.2",
+        "express-handlebars": "^7.1.2",
+        "express-session": "^1.17.3",
+        "mysql": "^2.18.1",
+        "mysql2": "^3.6.5",
+        "path": "^0.12.7",
+        "sequelize": "^6.35.1"
+    }
 }
