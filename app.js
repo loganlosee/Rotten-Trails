@@ -5,9 +5,7 @@ const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const dotenv = require('dotenv');
 const exphbs = require('express-handlebars');
 const sequelize = require('./config/config'); // Adjust the path based on your file structure
-const authController = require('./controllers/authController');
-const blogController = require('./controllers/trailController');
-const commentController = require('./controllers/commentController');
+const routes = require('./controllers');
 const handlebars = require('handlebars');
 const bcrypt = require('bcrypt');
 
@@ -19,7 +17,8 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Set up Handlebars
-app.engine('handlebars', exphbs());
+const hbs = exphbs.create({});
+app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
 // Middleware
@@ -40,23 +39,19 @@ app.use(
 );
 
 // Custom Handlebars helper (if needed)
-handlebars.create('extend', function (name, context) {
-  const block = handlebars.registeredBlocks[name];
+hbs.handlebars.registerHelper('extend', function (name, context) {
+  const block = hbs.handlebars.registeredBlocks[name];
   return block ? block(context) : null;
 });
 
 // Routes
 app.use('/api/auth', authController);
-app.use('/api/blog', blogController);
-app.use('/api/comments', commentController);
+app.use('/api/trail', trailController);
+app.use('/api/comment', commentController);
 
 // Define routes
 app.get('/', (req, res) => {
   res.render('home', { pageTitle: 'Home Page' });
-});
-
-app.get('/api/blog', (req, res) => {
-  res.render('blog', { pageTitle: 'Blog Page' });
 });
 
 app.get('/api/auth/logout', (req, res) => {
