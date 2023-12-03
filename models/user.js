@@ -14,11 +14,11 @@ User.init(
     username: {
       type: DataTypes.STRING,
       allowNull: false,
-      primaryKey: true,
     },
     email: {
       type: DataTypes.STRING,
       allowNull: false,
+      primaryKey: true,
       unique: true,
       validate: {
         isEmail: true,

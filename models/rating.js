@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/config');
 
-const rating = sequelize.define('rating', {
+const Rating = sequelize.define('rating', {
   rating: {
     type: DataTypes.BOOLEAN,
     allowNull: false,
@@ -21,6 +21,8 @@ const rating = sequelize.define('rating', {
     type: DataTypes.TEXT,
     allowNull: true,
   },
+}, {
+  timestamps: true, // Adding timestamps for createdAt and updatedAt
 });
 
-module.exports = rating;
+module.exports = Rating;
