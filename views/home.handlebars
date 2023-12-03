@@ -4,6 +4,8 @@
   <!-- ... -->
 </head>
 <body>
+  {{> header}}
+ 
   <h1>{{ pageTitle }}</h1>
   <form action="/api/auth/login" method="POST">
     <label for="email">Email:</label>
@@ -15,5 +17,7 @@
     <button type="submit">Log In</button>
   </form>
   <p>Don't have an account? <a href="/api/auth/signup">Click here to make an account</a></p>
+
+  {{> footer}}
 </body>
 </html>

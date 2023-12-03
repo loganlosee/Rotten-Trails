@@ -4,6 +4,7 @@
   <!-- ... -->
 </head>
 <body>
+  {{> header}}
   <h1>{{ pageTitle }}</h1>
   <form action="/api/auth/signup" method="POST">
     <label for="name">Name:</label>
@@ -17,5 +18,6 @@
     <br>
     <button type="submit">Sign Up</button>
   </form>
+  {{> footer}}
 </body>
 </html>
