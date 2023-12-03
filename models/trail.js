@@ -2,8 +2,9 @@ const { DataTypes } = require('sequelize');
 const sequelize = require('../config/config');
 
 const Trail = sequelize.define('Trail', {
-  name: {
+  trail_name: {
     type: DataTypes.STRING,
+    primaryKey: true,
     allowNull: false,
   },
   difficulty: {
@@ -13,6 +14,7 @@ const Trail = sequelize.define('Trail', {
   rating: {
     type: DataTypes.BOOLEAN, // Corrected from 'boolean' to 'BOOLEAN'
     allowNull: false,
+    primaryKey: false,
   },
   elevationGain: {
     type: DataTypes.INTEGER,
