@@ -1,21 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ pageTitle }}</title>
+</head>
 <body>
-  {{> header}}
- 
-  <h1>{{ pageTitle }}</h1>
-  <form action="/api/auth/login" method="POST">
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" required aria-labelledby="emailLabel">
-    <br>
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="password" required aria-labelledby="passwordLabel">
-    <br>
-    <button type="submit">Log In</button>
-  </form>
-  <p>Don't have an account? <a href="/api/auth/signup">Click here to make an account</a></p>
 
-  {{> footer}}
+  <h1>{{ pageTitle }}</h1>
+
+  {{#if loggedIn}}
+    <!-- Display trails if user is logged in -->
+    <ul>
+      {{#each trails}}
+        <li>{{this.trail_name}}</li>
+        <!-- Add more trail details as needed -->
+      {{/each}}
+    </ul>
+  {{else}}
+    <!-- Show a message or login prompt for non-logged-in users -->
+    <p>Please log in to view and rate trails.</p>
+  {{/if}}
+
 </body>
 </html>

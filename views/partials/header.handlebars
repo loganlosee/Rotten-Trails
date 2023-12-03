@@ -1,8 +1,14 @@
 <header>
+  <h1>Rotten Trails</h1>
   <nav>
     <ul>
       <li><a href="/">Home</a></li>
-      <li><a href="/trails">Trails</a></li>
+      {{#if loggedIn}}
+        <li><a href="/api/auth/logout">Logout</a></li>
+      {{else}}
+        <li><a href="/api/auth/login">Login</a></li>
+        <li><a href="/api/auth/signup">Sign Up</a></li>
+      {{/if}}
     </ul>
   </nav>
 </header>

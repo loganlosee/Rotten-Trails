@@ -1,10 +1,9 @@
-const authController = require('./authController');
-const trailController = require('./trailController');
-const ratingController = require('./ratingController');
+const router = require('express').Router();
 
-module.exports = {
-  authController,
-  trailController,
-  ratingController,
-  // Add more controllers as needed
-};
+const apiRoutes = require('./api');
+const homeRoutes = require('./home-routes.js');
+
+router.use('/', homeRoutes);
+router.use('/api', apiRoutes);
+
+module.exports = router;

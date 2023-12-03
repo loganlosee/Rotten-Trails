@@ -4,7 +4,9 @@ const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const dotenv = require('dotenv');
 const exphbs = require('express-handlebars');
 const sequelize = require('./config/config');
-const controllers = require('./controllers');
+const helpers = require('./utils/helpers');
+const routes = require('./controllers');
+
 const handlebars = require('handlebars');
 const bcrypt = require('bcrypt');
 
@@ -37,27 +39,16 @@ hbs.handlebars.registerHelper('extend', function (name, context) {
   return block ? block(context) : null;
 });
 
-app.use('/auth', controllers.authController);
-app.use('/trail', controllers.trailController);
-app.use('/rating', controllers.ratingController);
+app.use(routes);
 
 app.get('/', (req, res) => {
   // Example: Check if the user is logged in
-  //const loggedIn = req.session.userId !== undefined;
-  const loggedIn = true; //TESTING PURPOSES
+  const loggedIn = req.session.userId !== undefined;
+  //const loggedIn = true; //TESTING PURPOSES
 
   res.render('home', { pageTitle: 'Home Page', loggedIn });
 });
 
-app.get('/api/auth/logout', (req, res) => {
-  // Example: Implement logout logic
-  req.session.destroy(err => {
-    if (err) {
-      console.error('Error destroying session:', err);
-    }
-    res.redirect('/');
-  });
-});
 
 // Error middleware
 app.use((err, req, res, next) => {
