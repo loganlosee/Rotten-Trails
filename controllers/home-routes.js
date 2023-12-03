@@ -1,48 +1,38 @@
 const express = require('express');
 const router = express.Router();
-const { Trail } = require('../models');
-const withAuth = require('../utils/auth');
+const { User } = require('../models');
 
-// GET all trails for homepage
+// Render the homepage
 router.get('/', async (req, res) => {
   try {
-    const dbTrailData = await Trail.findAll();
-
-    const trails = dbTrailData.map((trail) => trail.get({ plain: true }));
-
-    res.render('home', {
-      trails,
-      loggedIn: req.session.loggedIn,
-    });
+    // You can include logic to fetch data for rendering the homepage if needed
+    res.render('homepage');
   } catch (err) {
     console.error(err);
     res.status(500).json(err);
   }
 });
 
-// GET one trail
-// Use the custom middleware before allowing the user to access the trail
-router.get('/trail/:id', withAuth, async (req, res) => {
-  try {
-    const dbTrailData = await Trail.findByPk(req.params.id);
-
-    const trail = dbTrailData.get({ plain: true });
-    res.render('trail', { trail, loggedIn: req.session.loggedIn });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json(err);
-  }
-});
-
-// Other routes (if needed)
-
+// Render the login page
 router.get('/login', (req, res) => {
+  // Redirect to the homepage if the user is already logged in
   if (req.session.loggedIn) {
     res.redirect('/');
     return;
   }
-
   res.render('login');
 });
+
+// Render the signup page
+router.get('/signup', (req, res) => {
+  // Redirect to the homepage if the user is already logged in
+  if (req.session.loggedIn) {
+    res.redirect('/');
+    return;
+  }
+  res.render('signup');
+});
+
+
 
 module.exports = router;

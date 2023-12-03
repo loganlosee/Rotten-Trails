@@ -4,10 +4,9 @@
     <ul>
       <li><a href="/">Home</a></li>
       {{#if loggedIn}}
-        <li><a href="/api/auth/logout">Logout</a></li>
+        <li><a href="/logout">Logout</a></li>
       {{else}}
-        <li><a href="/api/auth/login">Login</a></li>
-        <li><a href="/api/auth/signup">Sign Up</a></li>
+        <li><a href="/login">Login</a></li>
       {{/if}}
     </ul>
   </nav>

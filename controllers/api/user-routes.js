@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const { User } = require('../../models');
 
-// CREATE new user
+// Handle user signup
 router.post('/', async (req, res) => {
   try {
     const dbUserData = await User.create({
@@ -13,15 +13,21 @@ router.post('/', async (req, res) => {
     req.session.save(() => {
       req.session.loggedIn = true;
 
-      res.status(200).json(dbUserData);
+      res.status(201).json({
+        success: true,
+        user: dbUserData,
+        message: 'User created successfully.',
+      });
     });
   } catch (err) {
-    console.log(err);
-    res.status(500).json(err);
+    console.error(err);
+    res.status(500).json({
+      success: false,
+      message: 'Internal Server Error. Please try again later.',
+    });
   }
 });
 
-// Login
 router.post('/login', async (req, res) => {
   try {
     const dbUserData = await User.findOne({
@@ -48,6 +54,10 @@ router.post('/login', async (req, res) => {
 
     req.session.save(() => {
       req.session.loggedIn = true;
+      console.log(
+        'File: user-routes.js ~ line 57 ~ req.session.save ~ req.session.cookie',
+        req.session.cookie
+      );
 
       res
         .status(200)
@@ -59,7 +69,6 @@ router.post('/login', async (req, res) => {
   }
 });
 
-// Logout
 router.post('/logout', (req, res) => {
   if (req.session.loggedIn) {
     req.session.destroy(() => {
@@ -69,5 +78,7 @@ router.post('/logout', (req, res) => {
     res.status(404).end();
   }
 });
+
+
 
 module.exports = router;

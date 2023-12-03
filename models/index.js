@@ -1,5 +1,5 @@
 const user = require('./user');
-const trail = require('./trail');
+const trail = require('./Trail');
 const rating = require('./rating');
 
 user.hasMany(rating, {
