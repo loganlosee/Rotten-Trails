@@ -1,6 +1,6 @@
 const authController = require('./authController');
 const trailController = require('./trailController');
-const commentController = require('./commentController');
+const commentController = require('./ratingController');
 
 module.exports = {
   authController,

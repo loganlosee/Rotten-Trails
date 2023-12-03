@@ -48,7 +48,7 @@ hbs.handlebars.registerHelper('extend', function (name, context) {
 // Routes
 app.use('/api/auth', routes.authController);
 app.use('/api/trail', routes.trailController);
-app.use('/api/comment', routes.commentController);
+app.use('/api/rating', routes.ratingController);
 
 // Define routes
 app.get('/', (req, res) => {

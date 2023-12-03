@@ -1,0 +1,3 @@
+DROP DATABASE IF EXISTS rotten_db;
+
+CREATE DATABASE rotten_db;
