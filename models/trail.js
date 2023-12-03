@@ -12,7 +12,7 @@ const Trail = sequelize.define('Trail', {
     allowNull: false,
   },
   trail_rating: {
-    type: DataTypes.BOOLEAN, // Corrected from 'boolean' to 'BOOLEAN'
+    type: DataTypes.BOOLEAN,
     allowNull: false,
     primaryKey: false,
   },

@@ -7,15 +7,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ pageTitle }}</title>
 </head>
-
 <body>
-  {{> header}}
-
-  <main>
-    {{{ body }}}
-  </main>
-
-  {{> footer}}
+    {{> header}} <!-- Include header once -->
+    {{{body}}} <!-- Main content goes here -->
+    {{> footer}} <!-- Include footer once -->
 </body>
 
 </html>

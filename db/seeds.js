@@ -1,4 +1,4 @@
-const Trail = require('../models/trail');  /
+const Trail = require('../models/trail');
 
 const sampleTrails = [
   {
@@ -17,7 +17,6 @@ const sampleTrails = [
     length: 4.0,
     description: 'A moderately challenging trail with beautiful views.',
   },
-  // Add more trails as needed
 ];
 
 // Function to seed the database with sample trails
@@ -32,9 +31,6 @@ const seedDatabase = async () => {
     console.log('Seed data inserted successfully!');
   } catch (error) {
     console.error('Error seeding database:', error);
-  } finally {
-    // Close the database connection
-    await Trail.sequelize.close();
   }
 };
 

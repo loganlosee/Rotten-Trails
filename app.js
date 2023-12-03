@@ -1,32 +1,25 @@
-// Import required modules
 const express = require('express');
 const session = require('express-session');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const dotenv = require('dotenv');
 const exphbs = require('express-handlebars');
 const sequelize = require('./config/config');
-const { authController, trailController, ratingController } = require('./controllers'); // Make sure these are correctly imported
-
+const controllers = require('./controllers');
 const handlebars = require('handlebars');
-const { Trail } = require('./models'); // Import the Trail model
+const bcrypt = require('bcrypt');
 
-// Load environment variables from .env file
 dotenv.config();
 
-// Create an Express app
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Set up Handlebars
 const hbs = exphbs.create({});
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
-// Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Set up session
 const sessionStore = new SequelizeStore({
   db: sequelize,
 });
@@ -39,47 +32,40 @@ app.use(
   })
 );
 
-// Custom Handlebars helper (if needed)
 hbs.handlebars.registerHelper('extend', function (name, context) {
   const block = hbs.handlebars.registeredBlocks[name];
   return block ? block(context) : null;
 });
 
-// Routes
-app.use('/api/auth', authController);
-app.use('/api/trail', trailController);
-app.use('/api/rating', ratingController);
+app.use('/auth', controllers.authController);
+app.use('/trail', controllers.trailController);
+app.use('/rating', controllers.ratingController);
 
-// Define routes
 app.get('/', (req, res) => {
-  res.render('home', { pageTitle: 'Home Page' });
+  // Example: Check if the user is logged in
+  //const loggedIn = req.session.userId !== undefined;
+  const loggedIn = true; //TESTING PURPOSES
+
+  res.render('home', { pageTitle: 'Home Page', loggedIn });
 });
 
 app.get('/api/auth/logout', (req, res) => {
-  // Handle logout logic and redirect or render a page
-  // ...
-});
-
-app.get('/trails', async (req, res) => {
-  try {
-    const trails = await Trail.findAll();
-
-    // Render the trails page with the fetched data
-    res.render('trails', { pageTitle: 'Trails', trails });
-  } catch (error) {
-    console.error('Error fetching trails:', error);
-    res.status(500).send('Internal Server Error');
-  }
+  // Example: Implement logout logic
+  req.session.destroy(err => {
+    if (err) {
+      console.error('Error destroying session:', err);
+    }
+    res.redirect('/');
+  });
 });
 
 // Error middleware
-app.use((req, res) => {
-  res.status(404).send("Sorry, can't find that!");
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send('Something went wrong!');
 });
 
-// Start Sequelize and sync models with the database
 sequelize.sync().then(() => {
-  // Start the server
   app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
   });
