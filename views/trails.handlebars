@@ -1,14 +1,24 @@
-<!-- views/trails.handlebars -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trails</title>
-</head>
-<body>
-    <h1>Trails</h1>
-    <!-- Your content for the list of hiking trails goes here -->
-</body>
-</html>
+{{> header}}
+
+<div class="trails-container">
+  <h1>{{pageTitle}}</h1>
+  
+  {{#if trails.length}}
+    <ul class="trail-list">
+      {{#each trails}}
+        <li class="trail-item" data-trail-id="{{this.trail_name}}">
+          <h2>{{this.trail_name}}</h2>
+          <p>Difficulty: {{this.difficulty}}</p>
+          <p>Rating: {{this.trail_rating}}</p>
+          <p>Elevation Gain: {{this.elevationGain}}</p>
+          <p>Length: {{this.length}}</p>
+          <p>Description: {{this.description}}</p>
+        </li>
+      {{/each}}
+    </ul>
+  {{else}}
+    <p>No trails available.</p>
+  {{/if}}
+</div>
+
+{{> footer}}

@@ -5,10 +5,10 @@ const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const dotenv = require('dotenv');
 const exphbs = require('express-handlebars');
 const sequelize = require('./config/config');
-const routes = require('./controllers');  // Make sure this is correct
+const { authController, trailController, ratingController } = require('./controllers'); // Make sure these are correctly imported
 
 const handlebars = require('handlebars');
-const bcrypt = require('bcrypt');
+const { Trail } = require('./models'); // Import the Trail model
 
 // Load environment variables from .env file
 dotenv.config();
@@ -46,9 +46,9 @@ hbs.handlebars.registerHelper('extend', function (name, context) {
 });
 
 // Routes
-app.use('/api/auth', routes.authController);
-app.use('/api/trail', routes.trailController);
-app.use('/api/rating', routes.ratingController);
+app.use('/api/auth', authController);
+app.use('/api/trail', trailController);
+app.use('/api/rating', ratingController);
 
 // Define routes
 app.get('/', (req, res) => {
@@ -58,6 +58,18 @@ app.get('/', (req, res) => {
 app.get('/api/auth/logout', (req, res) => {
   // Handle logout logic and redirect or render a page
   // ...
+});
+
+app.get('/trails', async (req, res) => {
+  try {
+    const trails = await Trail.findAll();
+
+    // Render the trails page with the fetched data
+    res.render('trails', { pageTitle: 'Trails', trails });
+  } catch (error) {
+    console.error('Error fetching trails:', error);
+    res.status(500).send('Internal Server Error');
+  }
 });
 
 // Error middleware
@@ -72,4 +84,3 @@ sequelize.sync().then(() => {
     console.log(`Server is running on http://localhost:${PORT}`);
   });
 });
-

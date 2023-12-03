@@ -9,23 +9,13 @@
 </head>
 
 <body>
-  <header>
-    <h1>{{ siteTitle }}</h1>
-    <nav>
-      <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/api/trails">Trails</a></li>
-      </ul>
-    </nav>
-  </header>
+  {{> header}}
 
   <main>
     {{{ body }}}
   </main>
 
-  <footer>
-    <p>&copy; 2023 Your App</p>
-  </footer>
+  {{> footer}}
 </body>
 
 </html>
