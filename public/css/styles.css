@@ -1,3 +1,35 @@
-/* public/css/styles.css */
+nav {
+  display: flex;
+  justify-content:flex-start;
+}
 
-/* Your custom styles */
+/* styles for desktop */
+@media (min-width: 769px) {
+  .menu-icon {
+    display: none;
+    cursor: pointer;
+  }
+}
+
+/* Styles for smaller screens (e.g., mobile) */
+@media (max-width: 768px) {
+  nav {
+    flex-direction:row;
+    align-items:flex-start;
+  }
+
+  ul {
+    display: none; /* Hide the navigation by default on mobile */
+  }
+
+  .menu-icon {
+    display: block;
+    cursor: pointer;
+  }
+
+  /* Show the navigation when the menu icon is clicked */
+  ul.show {
+    display: flex;
+    flex-direction: column;
+  }
+}
