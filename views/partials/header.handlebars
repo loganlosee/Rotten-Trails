@@ -1,13 +1,16 @@
 <header>
-  <h1>Rotten Trails</h1>
+  <div id="header" class = "p-3 shadow-lg mb-2 bg-success text-white">
+    <h1>Rotten Trails</h1>
+  </div>
   <nav>
-    <ul>
-      <li><a href="/">Home</a></li>
+   <ul class="nav justify-content-center fw-bold">
+      <li><a class="nav-link text-success" href="/">Home</a></li>
       {{#if loggedIn}}
-        <li><a href="/logout">Logout</a></li>
+        <li><a class="nav-link text-success" href="/logout">Logout</a></li>
       {{else}}
-        <li><a href="/login">Login</a></li>
+        <li><a class="nav-link text-success" href="/login">Login</a></li>
       {{/if}}
     </ul>
+    <div class="menu-icon">&#9776;</div> 
   </nav>
 </header>

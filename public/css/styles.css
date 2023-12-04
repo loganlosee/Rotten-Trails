@@ -1,3 +1,52 @@
-/* public/css/styles.css */
+#header {
+  text-shadow: 2px 2px 2px rgba(28,110,164,0.88);
+}
 
-/* Your custom styles */
+.nav-link {
+  padding: 15px;
+}
+
+/* Style the navigation links */
+nav a {
+  color: white;
+  text-decoration: none;
+  margin: 0 15px;
+  font-size: 16px;
+}
+
+/* Change link color on hover */
+nav a:hover {
+  color: #ffd700; /* Change to your desired hover color */
+}
+
+
+/* styles for desktop */
+@media (min-width: 769px) {
+  .menu-icon {
+    display: none;
+    cursor: pointer;
+  }
+}
+
+/* Styles for smaller screens (e.g., mobile) */
+@media (max-width: 768px) {
+  nav {
+    flex-direction:row;
+    align-items:flex-start;
+  }
+
+  ul {
+    display: none; /* Hide the navigation by default on mobile */
+  }
+
+  .menu-icon {
+    display: block;
+    cursor: pointer;
+  }
+
+  /* Show the navigation when the menu icon is clicked */
+  ul.show {
+    display: flex;
+    flex-direction: column;
+  }
+}
