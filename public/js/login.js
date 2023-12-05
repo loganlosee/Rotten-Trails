@@ -28,7 +28,7 @@ const signupFormHandler = async (event) => {
   const password = document.querySelector('#password').value.trim();
 
   if (username && email && password) {
-    const response = await fetch('/api/users', {
+    const response = await fetch('/signup', {
       method: 'POST',
       body: JSON.stringify({ username, email, password }),
       headers: { 'Content-Type': 'application/json' },
@@ -37,16 +37,19 @@ const signupFormHandler = async (event) => {
     if (response.ok) {
       document.location.replace('/');
     } else {
-      alert('Failed to sign up.');
+      alert('Failed to sign up. Email already exists.');
     }
   }
 };
 document.addEventListener('DOMContentLoaded', () => {
-document
-  .querySelector('.login-form')
-  .addEventListener('submit', loginFormHandler);
+  const loginForm = document.querySelector('.login-form'); 
+  const signupForm = document.querySelector('.signup-form');
 
-document
-  .querySelector('.signup-form')
-  .addEventListener('submit', signupFormHandler);
-})
+  if (loginForm) {
+    loginForm.addEventListener('submit', loginFormHandler);
+  }
+
+  if (signupForm) {
+    signupForm.addEventListener('submit', signupFormHandler);
+  }
+});
