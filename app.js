@@ -3,7 +3,8 @@ const express = require('express');
 const session = require('express-session');
 const exphbs = require('express-handlebars');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
-const routes = require('./controllers');
+const userRoutes = require('./controllers/api/user-routes');
+const homeRoutes = require('./controllers/home-routes')
 const sequelize = require('./config/connection');
 const helpers = require('./utils/helpers');
 
@@ -31,7 +32,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', routes);
+app.use('/', userRoutes);
+app.use('/', homeRoutes);
 
 app.get('/', (req, res) => {
   res.render('home', { pageTitle: 'Home Page' });

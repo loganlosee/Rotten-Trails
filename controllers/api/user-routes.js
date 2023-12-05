@@ -1,30 +1,36 @@
 const router = require('express').Router();
-const { User } = require('../../models');
+const User = require('../../models').user;
+const sequelize = require('../../config/connection');
+
+sequelize.sync({ alter: true }) // Use 'force: true' carefully; it drops tables
+  .then(() => {
+    console.log('Database & tables synced!');
+  })
+  .catch((error) => {
+    console.error('Error syncing database:', error);
+  });
+
 
 // Handle user signup
-router.post('/', async (req, res) => {
+router.post('/signup', async (req, res) => {
   try {
-    const dbUserData = await User.create({
-      username: req.body.username,
-      email: req.body.email,
-      password: req.body.password,
-    });
+    // Destructure relevant fields from the request body
+    const { username, email, password } = req.body;
 
-    req.session.save(() => {
-      req.session.loggedIn = true;
+    // Check if the email already exists in the database
+    const existingUser = await User.findOne({ where: { email } });
+    if (existingUser) {
+      return res.status(400).json({ message: 'Email already exists' });
+    }
 
-      res.status(201).json({
-        success: true,
-        user: dbUserData,
-        message: 'User created successfully.',
-      });
-    });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({
-      success: false,
-      message: 'Internal Server Error. Please try again later.',
-    });
+    // Create a new user with the provided data
+    const newUser = await User.create({ username, email, password });
+    
+    // Return the newly created user data in the response
+    res.status(201).json({ user: newUser, message: 'User created successfully' });
+  } catch (error) {
+    console.error(error); // Log the caught error
+    res.status(500).json({ message: 'Server error' });
   }
 });
 
