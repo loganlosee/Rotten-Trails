@@ -1,0 +1,37 @@
+<!-- views/trail.handlebars -->
+
+{{#if trail}}
+  <h1>{{trail.trail_name}}</h1>
+  <p>Difficulty: {{trail.difficulty}}</p>
+  <p>Length: {{trail.length}} miles</p>
+  <p>Description: {{trail.description}}</p>
+
+  {{#if loggedIn}}
+    <h2>Leave a Rating</h2>
+    <form id="ratingForm">
+      <label>
+        Thumbs Up:
+        <input type="checkbox" name="thumbs_up" />
+      </label>
+      <button type="submit">Submit Rating</button>
+    </form>
+  {{else}}
+    <p>Login to leave a rating.</p>
+  {{/if}}
+
+  {{#if trail.trailRatings.length}}
+    <h2>Trail Ratings</h2>
+    <ul>
+      {{#each trail.trailRatings}}
+        <li>{{user.name}}: {{thumbs_up ? 'Thumbs Up' : 'Thumbs Down'}}</li>
+      {{/each}}
+    </ul>
+  {{else}}
+    <p>No ratings yet. Be the first to leave a rating!</p>
+  {{/if}}
+
+{{else}}
+  <p>Trail not found.</p>
+{{/if}}
+
+<script src="/js/trail.js"></script>

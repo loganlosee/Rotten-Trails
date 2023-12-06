@@ -27,6 +27,7 @@ Trail.init(
     freezeTableName: true,
     modelName: 'trail',
   }
+  
 );
 
 module.exports = Trail;

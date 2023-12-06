@@ -2,14 +2,10 @@ const router = require('express').Router();
 const { User, Trail, Rating } = require('../models');
 const withAuth = require('../utils/auth')
 
-// Render the homepage
-router.get('/', withAuth, async (req, res) => {
+// Render the homepage with trails
+
+router.get('/', async (req, res) => {
   try {
-    if (!req.session.loggedIn) {
-      // Redirect to the login page if the user is not logged in
-      res.redirect('/login');
-      return;
-    }
 
     const trails = await Trail.findAll({
       include: [
@@ -33,12 +29,37 @@ router.get('/', withAuth, async (req, res) => {
   }
 });
 
+//render trail page if logged in and clicked on trail
+router.get('/trail/trail_name', withAuth, async (req, res) => {
+  try {
+    const trailData = await Trail.findByPk(req.params.trail_name, {
+      include: [
+        {
+          model: Rating,
+          as: 'trailRatings',
+          include: {
+            model: User,
+            attributes: ['name'],
+          },
+        },
+      ],
+    });
+
+    const trail = trailData ? trailData.get({ plain: true }) : null;
+    res.render('trail', { trail, loggedIn: req.session.loggedIn });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
+
 router.get('/login', (req, res) => {
-  // Redirect to the homepage if the user is already logged in
   if (req.session.loggedIn) {
     res.redirect('/');
     return;
   }
+
   res.render('login');
 });
 
@@ -51,7 +72,5 @@ router.get('/signup', (req, res) => {
   }
   res.render('signup');
 });
-
-
 
 module.exports = router;

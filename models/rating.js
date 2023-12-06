@@ -9,10 +9,6 @@ Rating.init(
       type: DataTypes.BOOLEAN,
       allowNull: false,
     },
-    trail_name: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
   },
   {
     sequelize,
