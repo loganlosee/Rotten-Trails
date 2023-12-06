@@ -1,7 +1,10 @@
-const { DataTypes } = require('sequelize');
+const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-const trail = sequelize.define('trail', {
+class Trail extends Model {}
+
+Trail.init(
+  {
   trail_name: {
     type: DataTypes.STRING,
     primaryKey: true,
@@ -30,4 +33,4 @@ const trail = sequelize.define('trail', {
   },
 });
 
-module.exports = trail;
+module.exports = Trail;
