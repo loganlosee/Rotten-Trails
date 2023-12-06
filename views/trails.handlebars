@@ -1,0 +1,18 @@
+{{#if trails.length}}
+  <!-- Render trails when logged in -->
+  <ul class="trail-list">
+    {{#each trails}}
+      <li class="trail-item">
+        <h2><a href="/trails/{{this.trail_name}}">{{this.trail_name}}</a></h2>
+        <p>Difficulty: {{this.difficulty}}</p>
+        <p>Rating: {{this.trailRatings.rating}}</p> <!-- Assuming trailRatings is the alias used -->
+        <p>Elevation Gain: {{this.elevation_gain}}</p>
+        <p>Length: {{this.length}}</p>
+        <p>Description: {{this.description}}</p>
+      </li>
+    {{/each}}
+  </ul>
+{{else}}
+  <!-- Display message when no trails are available -->
+  <p>No trails available.</p>
+{{/if}}

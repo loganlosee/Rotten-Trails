@@ -12,7 +12,7 @@ Rating.belongsTo(User, {
 });
 
 Rating.hasMany(Trail, {
-  foreignKey: 'ratingId', // This foreign key should exist in the Trail model
+  foreignKey: 'ratingId',
   onDelete: 'CASCADE',
 });
 
