@@ -93,7 +93,7 @@ router.post('/logout', (req, res) => {
     console.error('Error during logout:', err);
     res.status(500).json({ message: 'Internal Server Error' });
   }
-});
+}); 
 
 
 module.exports = router;

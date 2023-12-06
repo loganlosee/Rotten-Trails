@@ -5,6 +5,12 @@ const withAuth = require('../utils/auth')
 // Render the homepage
 router.get('/', withAuth, async (req, res) => {
   try {
+    if (!req.session.loggedIn) {
+      // Redirect to the login page if the user is not logged in
+      res.redirect('/login');
+      return;
+    }
+
     const trails = await Trail.findAll({
       include: [
         {
@@ -27,10 +33,6 @@ router.get('/', withAuth, async (req, res) => {
   }
 });
 
-
-
-
-// Render the login page
 router.get('/login', (req, res) => {
   // Redirect to the homepage if the user is already logged in
   if (req.session.loggedIn) {
