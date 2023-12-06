@@ -1,26 +1,18 @@
 const sequelize = require('../config/connection');
-const { User, Trail , Rating } = require('../models');
+const seedTrail = require('./trailData');
+const seedRating = require('./ratingData');
+const seedUser = require('./userData')
 
-const seedDatabase = async () => {
+const seedAll = async () => {
   await sequelize.sync({ force: true });
 
-  const trailData = require('./trailData.json');
-  const userData = require('./userData.json');
+  await seedTrail();
 
-  const users = await User.bulkCreate(userData, {
-    individualHooks: true,
-    returning: true,
-  });
+  await seedRating();
 
-  for (const trail of trailData) {
-    await Trail.create({
-      ...trail,
-      user_id: users[Math.floor(Math.random() * users.length)].id,
-  });
-}
-
+  await seedUser();
 
   process.exit(0);
 };
 
-seedDatabase();
+seedAll();
