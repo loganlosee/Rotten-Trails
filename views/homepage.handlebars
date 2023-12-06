@@ -1,24 +1,9 @@
-<div class="trails-container">
-  <h2>{{pageTitle}}</h2>
-  
-  {{#if trail.length}}
-    <ul class="trail-list">
-      {{#each trail}}
-        <li class="trail-item" data-trail-id="{{this.trail_name}}">
-          <h2>{{this.trail_name}}</h2>
-          <p>Difficulty: {{this.difficulty}}</p>
-          <p>Length: {{this.length}}</p>
-          <p>Description: {{this.description}}</p>
-
-          <!-- Assuming each trail has an associated rating -->
-          {{#if this.rating}}
-            <p>Thumbs Up: {{this.rating.thumbs_up}}</p>
-            <!-- You can include other rating details here -->
-          {{/if}}
-        </li>
-      {{/each}}
-    </ul>
-  {{else}}
-    <p>No trails available.</p>
-  {{/if}}
-</div>
+{{#if loggedIn}}
+  <!-- Render trails when logged in -->
+  {{#each trails}}
+    <!-- Render trail information -->
+  {{/each}}
+{{else}}
+  <!-- Display login message when not logged in -->
+  <p>Please log in to view trails.</p>
+{{/if}}

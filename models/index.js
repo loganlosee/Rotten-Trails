@@ -12,14 +12,14 @@ Rating.belongsTo(User, {
 });
 
 Rating.hasMany(Trail, {
-  foreignKey: 'userId', // Adjusted to match the actual foreign key in Trail
+  foreignKey: 'ratingId', // Adjusted to match the actual foreign key in Trail
   onDelete: 'CASCADE',
 });
 
 Trail.belongsTo(Rating, {
-  foreignKey: 'userId', // Adjusted to match the actual foreign key in Rating
-  as: 'trailRatings',
-});
+    foreignKey: 'rating_id',
+    as: 'trailRatings',
+  });
 
 module.exports = { User, Trail, Rating };
 
