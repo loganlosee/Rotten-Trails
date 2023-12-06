@@ -2,23 +2,24 @@ const User = require('./User');
 const Trail = require('./Trail');
 const Rating = require('./Rating');
 
-user.hasMany(Rating, {
-    foreignKey: 'email',
-    onDelete: 'CASCADE'
-    });
+User.hasMany(Rating, {
+  foreignKey: 'userId',
+  onDelete: 'CASCADE',
+});
 
-rating.belongsTo(User, {
-    foreignKey: 'email'
-    });
+Rating.belongsTo(User, {
+  foreignKey: 'userId',
+});
 
-rating.hasMany(Trail, {
-    foreignKey: 'trailName',
-    onDelete: 'CASCADE'
-    });
+Rating.hasMany(Trail, {
+  foreignKey: 'userId', // Adjusted to match the actual foreign key in Trail
+  onDelete: 'CASCADE',
+});
 
-trail.belongsTo(Rating, {
-    foreignKey: 'trailName'
-    });
+Trail.belongsTo(Rating, {
+  foreignKey: 'userId', // Adjusted to match the actual foreign key in Rating
+  as: 'trailRatings',
+});
 
 module.exports = { User, Trail, Rating };
 

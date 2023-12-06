@@ -1,24 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sign Up</title>
-</head>
+
 <body>
   <h2>Sign Up</h2>
-  <form action="/signup" method="POST" class="signup-form">
-    <label for="username">Username:</label>
-    <input type="text" id="username" name="username" required>
-    <br>
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" required>
-    <br>
-    <label for="password">Password must be minimum 8 characters:</label>
-    <input type="password" id="password" name="password" required>
-    <br>
-    <button type="submit" id="submit">Sign Up</button>
-  </form>
-  <script src="/js/login.js"></script>
+    <form class="form signup-form">
+      <div class="form-group">
+        <label for="name-signup">name:</label>
+        <input class="form-input" type="text" id="name-signup" />
+      </div>
+      <div class="form-group">
+        <label for="email-signup">email:</label>
+        <input class="form-input" type="text" id="email-signup" />
+      </div>
+      <div class="form-group">
+        <label for="password-signup">password:</label>
+        <input class="form-input" type="password" id="password-signup" />
+      </div>
+      <div class="form-group">
+        <button class="btn btn-primary" type="submit">signup</button>
+      </div>
+    </form>
 </body>
 </html>
