@@ -1,33 +1,32 @@
-const { DataTypes } = require('sequelize');
+const { DataTypes, Model } = require('sequelize');
 const sequelize = require('../config/connection');
 
-const trail = sequelize.define('trail', {
-  trail_name: {
-    type: DataTypes.STRING,
-    primaryKey: true,
-    allowNull: false,
-  },
-  difficulty: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-  trail_rating: {
-    type: DataTypes.BOOLEAN,
-    allowNull: false,
-    primaryKey: false,
-  },
-  elevationGain: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-  },
-  length: {
-    type: DataTypes.FLOAT,
-    allowNull: false,
-  },
-  description: {
-    type: DataTypes.TEXT,
-    allowNull: true,
-  },
-});
+class Trail extends Model {}
 
-module.exports = trail;
+Trail.init(
+  {
+    trail_name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
+    },
+    difficulty: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    length: {
+      type: DataTypes.FLOAT,
+      allowNull: false,
+    },
+    description: {
+      type: DataTypes.TEXT,
+    },
+  },
+  {
+    sequelize,
+    freezeTableName: true,
+    modelName: 'trail',
+  }
+);
+
+module.exports = Trail;

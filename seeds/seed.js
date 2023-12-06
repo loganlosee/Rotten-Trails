@@ -1,25 +1,18 @@
-// Example in a seed script (e.g., seed.js)
-
 const sequelize = require('../config/connection');
-const Trail = require('../models/Trail');
-const trailSeedData = require('./seed-trails');
+const seedTrail = require('./trailData');
+const seedRating = require('./ratingData');
+// const seedUser = require('./userData')
 
-const seedDatabase = async () => {
-  try {
-    // Synchronize the model with the database
-    await Trail.sync({ force: true });
+const seedAll = async () => {
+  await sequelize.sync({ force: true });
 
-    // Create sample trails
-    await Trail.bulkCreate(trailSeedData);
+  await seedTrail();
 
-    console.log('Seed data inserted successfully!');
-  } catch (error) {
-    console.error('Error seeding database:', error);
-  } finally {
-    // Close the database connection
-    await sequelize.close();
-  }
+  await seedRating();
+
+  // await seedUser();
+
+  process.exit(0);
 };
 
-// Call the seedDatabase function
-seedDatabase();
+seedAll();

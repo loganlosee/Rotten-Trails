@@ -1,16 +1,9 @@
-
- <div class = "p-3 mb-2 text-white"></div>
-  <h2>{{ pageTitle }}</h2>
-
-  {{#if loggedIn}}
-    <!-- Display trails if user is logged in -->
-    <ul>
-      {{#each trails}}
-        <li>{{this.trail_name}}</li>
-        <!-- Add more trail details as needed -->
-      {{/each}}
-    </ul>
-  {{else}}
-    <!-- Show a message or login prompt for non-logged-in users -->
-    <p>Please log in to view and rate trails.</p>
-  {{/if}}
+{{#if loggedIn}}
+  <!-- Render trails when logged in -->
+  {{#each trails}}
+    <!-- Render trail information -->
+  {{/each}}
+{{else}}
+  <!-- Display login message when not logged in -->
+  <p>Please log in to view trails.</p>
+{{/if}}
