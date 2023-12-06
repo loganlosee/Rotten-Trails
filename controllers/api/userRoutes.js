@@ -26,31 +26,22 @@ router.post('/login', async (req, res) => {
     });
 
     if (!dbUserData) {
-      res
-        .status(400)
-        .json({ message: 'Incorrect email or password. Please try again!' });
-      return;
+      return res.status(400).json({ message: 'Incorrect email or password. Please try again!' });
     }
 
     const validPassword = await dbUserData.checkPassword(req.body.password);
 
     if (!validPassword) {
-      res
-        .status(400)
-        .json({ message: 'Incorrect email or password. Please try again!' });
-      return;
+      return res.status(400).json({ message: 'Incorrect email or password. Please try again!' });
     }
 
     req.session.save(() => {
       req.session.loggedIn = true;
-
-      res
-        .status(200)
-        .json({ user: dbUserData, message: 'You are now logged in!' });
+      res.status(200).json({ user: dbUserData, message: 'You are now logged in!' });
     });
   } catch (err) {
-    console.log(err);
-    res.status(400).json(err);
+    console.error('Login Error:', err);
+    res.status(500).json({ message: 'Internal Server Error' });
   }
 });
 
@@ -76,24 +67,14 @@ router.post('/signup', async (req, res) => {
 });
 
 router.post('/logout', (req, res) => {
-  try {
-    if (req.session.loggedIn) {
-      req.session.destroy((err) => {
-        if (err) {
-          console.error('Error destroying session:', err);
-          res.status(500).json({ message: 'Internal Server Error' });
-        } else {
-          res.status(204).end();
-        }
-      });
-    } else {
-      res.status(404).end();
-    }
-  } catch (err) {
-    console.error('Error during logout:', err);
-    res.status(500).json({ message: 'Internal Server Error' });
+  if (req.session.loggedIn) {
+    req.session.destroy(() => {
+      res.status(204).end();
+    });
+  } else {
+    res.status(404).end();
   }
-}); 
+});
 
 
 module.exports = router;
