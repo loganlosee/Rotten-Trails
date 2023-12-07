@@ -21,6 +21,14 @@ const traildata = [
   }
 ];
 
-const seedTrail = () => Trail.bulkCreate(traildata);
+const seedTrail = () => {
+  const sanitizedTrailData = traildata.map(trail => ({
+    ...trail,
+    sanitized_trail_name: trail.trail_name.replace(/\s+/g, '_').toLowerCase(),
+  }));
+
+  return Trail.bulkCreate(sanitizedTrailData);
+};
 
 module.exports = seedTrail;
+

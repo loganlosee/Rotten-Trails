@@ -1,3 +1,4 @@
+// trail model
 const { DataTypes, Model } = require('sequelize');
 const sequelize = require('../config/connection');
 
@@ -7,6 +8,11 @@ Trail.init(
   {
     trail_name: {
       type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
+    },
+    sanitized_trail_name: {
+      type: DataTypes.STRING, // Adjust the data type accordingly
       allowNull: false,
       unique: true,
     },
@@ -27,7 +33,6 @@ Trail.init(
     freezeTableName: true,
     modelName: 'trail',
   }
-  
 );
 
 module.exports = Trail;
