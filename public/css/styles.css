@@ -4,8 +4,8 @@
 
 /* Style the navigation links */
 nav a {
-  color: white;
   text-decoration: none;
+  font-weight: bold;
   margin: 0 15px;
   font-size: 16px;
 }
@@ -42,4 +42,35 @@ nav a {
   }
 }
 
+.app-container {
+  background-image: url('/pexels-tyler-lastovich-633198.jpg'); /* Replace 'path/to/your/image.jpg' with the actual path to your image */
+  background-size: cover; /* Cover the entire container */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  height: 100vh;
+  width: 100%;
+}
 
+.trail-name {
+  font-weight: bold; /* Make it bold */
+  color: green; /* Set text color to green */
+  display: block; /* Ensure it takes full width */
+  text-align: center; /* Center the text */
+  transition: color 0.3s ease; /* Add transition for color change on hover */
+
+  /* Additional styling for a "pretty" look */
+  font-style: italic; /* Italics */
+  font-size: 1.2em; /* Adjust font size */
+  margin: 0; /* Remove any default margin */
+}
+
+.trail-name:hover {
+  color: lightgreen; /* Change color to a lighter green on hover */
+}
+
+.plslogin {
+  text-align: center; /* Center the text */
+  font-size: 24px; /* Adjust the font size to your preference */
+  font-weight: bold; /* Make the text bold */
+  margin: 200px 0; /* Add margin for spacing (adjust as needed) */
+}

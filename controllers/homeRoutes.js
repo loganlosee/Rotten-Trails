@@ -82,11 +82,11 @@ router.get('/trails/:sanitized_trail_name', withAuth, async (req, res) => {
   }
 });
 
-router.get('/add-trail', (req, res) => {
-  res.render('addTrailForm'); // Render your handlebars file for the add trail form
+router.get('/add-trail', withAuth, (req, res) => {
+  res.render('addTrailForm', { loggedIn: req.session.loggedIn });
 });
 
-router.post('/submit-trail', async (req, res) => {
+router.post('/submit-trail', withAuth, async (req, res) => {
   try {
     const { trail_name, difficulty, length, description } = req.body;
 
