@@ -1,6 +1,7 @@
 {{#if loggedIn}}
   {{#if trails.length}}
     <!-- Render trails when logged in -->
+
     <ul class="trail-list">
       {{#each trails}}
         <li class="trail-item">
@@ -14,6 +15,7 @@
       {{/each}}
     </ul>
   {{else}}
+
     <p>No trails available.</p>
   {{/if}}
 {{else}}
