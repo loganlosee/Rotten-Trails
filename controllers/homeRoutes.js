@@ -82,4 +82,33 @@ router.get('/trails/:sanitized_trail_name', withAuth, async (req, res) => {
   }
 });
 
+router.get('/add-trail', (req, res) => {
+  res.render('addTrailForm'); // Render your handlebars file for the add trail form
+});
+
+router.post('/submit-trail', async (req, res) => {
+  try {
+    const { trail_name, difficulty, length, description } = req.body;
+
+    // Sanitize trail name
+    const sanitized_trail_name = trail_name.replace(/\s+/g, '_').toLowerCase();
+
+    // Create the trail with the sanitized name
+    const newTrail = await Trail.create({
+      trail_name,
+      sanitized_trail_name, // Save the sanitized trail name in the database
+      difficulty,
+      length,
+      description,
+    });
+
+    req.session.loggedIn = true;
+    
+    res.redirect('/'); // Redirect to the homepage after creating the trail
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
 module.exports = router;

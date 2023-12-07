@@ -1,0 +1,15 @@
+<form action="/submit-trail" method="POST">
+  <label for="trail_name">Trail Name:</label>
+  <input type="text" id="trail_name" name="trail_name" required>
+  
+  <label for="difficulty">Difficulty (easy, moderate, difficult):</label>
+  <input type="text" id="difficulty" name="difficulty" required>
+  
+  <label for="length">Length (miles):</label>
+  <input type="number" id="length" name="length" required>
+  
+  <label for="description">Please type a description of the trail. Some good things to include are terrain (rocks, sand, etc), steepness, views, etc.</label>
+  <textarea id="description" name="description" required></textarea>
+  
+  <button type="submit">Submit</button>
+</form>
