@@ -13,8 +13,9 @@ const loginFormHandler = async (event) => {
     });
 
     if (response.ok) {
-      // If successful, redirect the browser to the home page withauth
-      document.location.replace('/trails');
+      // If successful, redirect the browser to the '/' page
+      document.location.replace('/');
+      console.log(response)
     } else {
       alert(response.statusText);
     }
@@ -36,12 +37,14 @@ const signupFormHandler = async (event) => {
     });
 
     if (response.ok) {
-      document.location.replace('/trails');
+      // If successful, redirect the browser to the '/trails' page
+      document.location.replace('/');
     } else {
       alert('Failed to sign up.');
     }
   }
 };
+
 document.addEventListener('DOMContentLoaded', () => {
   const loginForm = document.querySelector('.login-form'); 
   const signupForm = document.querySelector('.signup-form');

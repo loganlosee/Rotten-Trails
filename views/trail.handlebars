@@ -1,0 +1,22 @@
+<div class="container">
+  <h1>{{trail.trail_name}}</h1>
+  <p>Difficulty: {{trail.difficulty}}</p>
+  <p>Length: {{trail.length}}</p>
+  <p>Description: {{trail.description}}</p>
+
+  <h2>Trail Ratings</h2>
+  <ul>
+    {{#each trail.trailRatings}}
+      <li>{{this.thumbs_up ? "👍" : "👎"}} Rated by {{this.User.name}}</li>
+    {{/each}}
+  </ul>
+
+  <!-- Add a form for leaving a rating -->
+  <form class="leave-rating-form">
+    <label for="thumbs-up">Thumbs Up:</label>
+    <input type="checkbox" id="thumbs-up" name="thumbs_up" value="true">
+    <button type="submit">Leave Rating</button>
+  </form>
+</div>
+
+
