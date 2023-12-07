@@ -1,22 +1,26 @@
-  {{#if loggedIn}}
-    {{#if trails.length}}
-      <!-- Render trails when logged in -->
-      <ul class="trail-list">
-        {{#each trails}}
-          <li class="trail-item">
-            <h2><a href="/trails/{{this.trail_name}}">{{this.trail_name}}</a></h2>
-            <p>Difficulty: {{this.difficulty}}</p>
-            <p>Rating: {{this.trailRatings.rating}}</p> <!-- Assuming trailRatings is the alias used -->
-            <p>Elevation Gain: {{this.elevation_gain}}</p>
-            <p>Length: {{this.length}}</p>
-            <p>Description: {{this.description}}</p>
-          </li>
-        {{/each}}
-      </ul>
-    {{else}}
-      <!-- Display message when no trails are available -->
-      <p>No trails available.</p>
-    {{/if}}
+{{#if loggedIn}}
+  {{#if trails.length}}
+    <!-- Render trails when logged in -->
+    <div class="grid-x grid-padding-x small-up-1 medium-up-2 large-up-3">
+      {{#each trails}}
+        <div class="cell">
+          <div class="card shadow"> 
+            <div class="card-section">
+              <h2><a href="/trails/{{this.trail_name}}">{{this.trail_name}}</a></h2>
+              <p>Difficulty: {{this.difficulty}}</p>
+              <p>Rating: {{this.trailRatings.rating}}</p>
+              <p>Elevation Gain: {{this.elevation_gain}}</p>
+              <p>Length: {{this.length}}</p>
+              <p>Description: {{this.description}}</p>
+            </div>
+          </div>
+        </div>
+      {{/each}}
+    </div>
   {{else}}
-    Please login to view trails!
+    <!-- Display message when no trails are available -->
+    <p>No trails available.</p>
   {{/if}}
+{{else}}
+  Please login to view trails!
+{{/if}}
