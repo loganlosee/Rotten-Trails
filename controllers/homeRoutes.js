@@ -8,7 +8,7 @@ router.get('/', async (req, res) => {
   try {
     let trailsData = [];
 
-    if (req.session.logged_in) {
+    if (req.session.loggedIn) {
       const trails = await Trail.findAll({
         include: [
           {
@@ -25,7 +25,7 @@ router.get('/', async (req, res) => {
       trailsData = trails.map(trail => trail.get({ plain: true }));
     }
 
-    res.render('homepage', { loggedIn: req.session.logged_in, trails: trailsData });
+    res.render('homepage', { loggedIn: req.session.loggedIn, trails: trailsData });
   } catch (err) {
     console.error(err);
     res.status(500).json(err);
@@ -33,6 +33,7 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/login', (req, res) => {
+ console.log('we were here')
   if (req.session.loggedIn) {
     res.redirect('/');
     return;
@@ -66,8 +67,9 @@ router.get('/trails/:sanitized_trail_name', withAuth, async (req, res) => {
         },
       ],
     });
-
+    
     if (!trailData) {
+      
       res.status(404).json({ message: 'No trail found with this name!' });
       return;
     }

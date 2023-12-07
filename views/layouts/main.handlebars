@@ -18,7 +18,7 @@
     {{> header}}
       <nav>
           <ul class="nav justify-content-center fw-bold">
-            <li><a class="nav-link text-success" href="/trails">Home</a></li>
+            <li><a class="nav-link text-success" href="/">Home</a></li>
             {{#if loggedIn}}
               <button class="nav-link text-success" id="logout" >Logout</button>
             {{else}}
@@ -38,7 +38,7 @@
     <script src="/js/logout.js"></script>
 
     <script src="/js/trail.js"></script>
-    
+
     {{else}}
     <script src="/js/login.js"></script>
     {{/if}}
