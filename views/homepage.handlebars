@@ -1,21 +1,22 @@
 {{#if loggedIn}}
   {{#if trails.length}}
     <!-- Render trails when logged in -->
-
-    <ul class="trail-list">
+    <div class="grid-x grid-margin-x small-up-1 medium-up-2 large-up-3">
       {{#each trails}}
-        <li class="trail-item">
-          <h2><a href="/trails/{{this.sanitized_trail_name}}" class="trail-name" data-trail-id="{{trail_name}}">{{this.trail_name}}</a></h2>
-          <p>Difficulty: {{this.difficulty}}</p>
-          <p>Rating: {{this.trailRatings.rating}}</p>
-          <p>Elevation Gain: {{this.elevation_gain}}</p>
-          <p>Length: {{this.length}}</p>
-          <p>Description: {{this.description}}</p>
-        </li>
+        <div class="cell">
+          <div class="card shadow">
+            <h2><a href="/trails/{{this.sanitized_trail_name}}" class="trail-name" data-trail-id="{{trail_name}}">{{this.trail_name}}</a></h2>
+            <p>Difficulty: {{this.difficulty}}</p>
+            <p>Rating: {{this.trailRatings.rating}}</p>
+            <p>Elevation Gain: {{this.elevation_gain}}</p>
+            <p>Length: {{this.length}}</p>
+            <p>Description: {{this.description}}</p>
+          </div>
+        </div>
       {{/each}}
-    </ul>
+    </div>
   {{else}}
-
+    <!-- Display message when no trails are available -->
     <p>No trails available.</p>
   {{/if}}
 {{else}}
