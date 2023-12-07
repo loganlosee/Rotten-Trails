@@ -18,15 +18,28 @@
 <body class="d-flex flex-column min-vh-100">
     {{> header}}
       <nav>
-          <ul class="nav justify-content-center fw-bold">
-            <li><a class="nav-link text-success" href="/">Home</a></li>
+          <ul class="nav nav-fill">
+            
             {{#if loggedIn}}
-              <button class="nav-link text-success" id="logout" >Logout</button>
+            <li class="nav-item">
+              <a class="link-success link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
+               href="/">Home</a></li>
+            </li>
+            <li class="nav-item">
+              <a class="link-success link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
+               href="/add-trail">Add Trail</a></li>
+            </li>  
+            <li class="nav-item">  
+              <a class="link-success link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
+               id="logout" >Logout</button>
+            </li>
             {{else}}
-              <li><a class="nav-link text-success" href="/login">Login</a></li>
+            <li class="nav-item">  
+              <a class="link-success link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
+               href="/login">Login</a>
+            </li>
             {{/if}}
           </ul>
-        <div class="menu-icon">&#9776;</div> 
       </nav>    
     {{{body}}}
     {{> footer}}
