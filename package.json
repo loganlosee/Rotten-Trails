@@ -5,12 +5,12 @@
     "main": "app.js",
     "scripts": {
         "start": "node app.js",
+        "dev": "nodemon app.js",
         "seed": "node seeds/seed.js",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
-    
-    "keywords": [],
-    "author": "",
+    "keywords": ["hiking", "trails", "reviews", "express", "sequelize", "mysql", "dotenv"],
+    "author": "Your Name",
     "license": "ISC",
     "dependencies": {
         "bcryptjs": "^2.4.3",
