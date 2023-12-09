@@ -1,6 +1,6 @@
-const User = require('./User');
-const Trail = require('./Trail');
-const Rating = require('./Rating');
+const User = require('./user');
+const Trail = require('./trail');
+const Rating = require('./rating');
 
 User.hasMany(Rating, {
   foreignKey: 'userId',
