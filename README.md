@@ -9,6 +9,7 @@ Rotten Trails is a web application that provides a platform for users to explore
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
   - [Usage](#usage)
+  - [live application](#live-application)
 - [Technologies](#technologies)
 - [Contributing](#contributing)
 - [License](#license)
@@ -65,6 +66,11 @@ Start the application:
     npm start
 
     Open your browser and navigate to http://localhost:3000.
+    
+## live application
+OR navigate to deployed app at heroku
+
+  https://rotten-trails-96144daadebc.herokuapp.com/
 
 ## Technologies
 Node.js
